@@ -1,22 +1,15 @@
----
-title: "Getting started"
-slug: "getting-started"
-excerpt: "Start page of Docs"
-hidden: false
-createdAt: "2023-05-16T13:11:01.720Z"
-updatedAt: "2023-05-16T13:48:23.113Z"
----
-# Description
+# Getting started with prodiapy
+## Description
 
 prodiapy is a module that makes usage of [Prodia Stable Diffusion API](https://docs.prodia.com/reference/getting-started) easier with Python
 
-# Installation
+## Installation
 
 To install `prodiapy` through pip run command
 
 `pip install -U prodiapy`
 
-# Examples
+## Examples
 
 Here simplest example of prodiapy usage:
 
