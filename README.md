@@ -21,7 +21,7 @@ print(image)
 ```
 `image` variable will be a url of your image
 
-Check Wiki for full documentation
+[Full Documentation](https://prodiapy.readme.io/)
 
 Feel free to join out [Discord server](https://discord.gg/PtdHCVysfj) and ask question!
 
