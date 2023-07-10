@@ -21,6 +21,13 @@ print(image)
 ```
 `image` variable will be a url of your image
 
+# HuggingFace Demo
+
+https://huggingface.co/spaces/zenafey/prodia
+
+![image](https://github.com/zenafey/prodiapy/assets/118455214/4692d825-1d9f-4e4e-a041-40b0e31dc96e)
+
+
 # Prodia Desktop Studio
 ```
 git clone https://github.com/zenafey/prodiapy
