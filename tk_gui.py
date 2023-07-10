@@ -335,7 +335,7 @@ style = ttk.Style()
 style.configure('TButton', font=('Arial', 14))
 
 root.geometry('990x700')  # Set the window size
-root.title("Prodia Image Generator")
+root.title("Prodia Desktop Studio")
 
 label = Label(root)
 label.place(x=270, y=100)
