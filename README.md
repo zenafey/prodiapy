@@ -3,7 +3,7 @@ This module makes generation of image by Prodia API easier
 
 ### Installation 
 ```
-pip install prodiapy==3.3
+pip install prodiapy==3.4
 ```
 For using this script you need to get your Prodia api key, you can make it on https://app.prodia.com/api
 
@@ -17,9 +17,17 @@ key = "your-prodia-key"
 client = prodia.Client(api_key=key)
 
 image = client.txt2img(prompt="kittens on cloud", model="dreamlike-diffusion-2.0.safetensors [fdcf65e7]")
-print(image)
+print(image.url)
 ```
-`image` variable will be a url of your image
+`image` variable will be a class with attributes:
+
+- url - url of generated image
+- payload - used payload
+- response - retrieved response
+- seed() - function that return seed of generated image
+- pnginfo() - function that return a dict with pnginfo of image
+
+
 
 # HuggingFace Demo
 
@@ -45,4 +53,3 @@ Feel free to join out [Discord server](https://discord.gg/PtdHCVysfj) and ask qu
 
 
 
-@

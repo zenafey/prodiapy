@@ -3,14 +3,14 @@ import requests
 from PIL import Image
 from io import BytesIO
 from colorama import Fore, init, Style
-from .constants import *
+from .constants import * #######
 
 def get_pnginfo(imageurl):
     response = requests.get(imageurl)
     targetImage = Image.open(BytesIO(response.content))
     try:
         metadata = targetImage.text
-        data = "\n".join([f"{key}: {value}" for key, value in metadata.items()])
+        data = {key: value for key, value in metadata.items()}
     except AttributeError:
         data = "Sorry, there is no pnginfo in this image"
     return data
@@ -97,3 +97,4 @@ def controlnet_models():
 def samplers():
     for sampler in Sampler:
         print(f"{sampler.value[0]} - {sampler.value[1]}")
+
