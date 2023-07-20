@@ -1,6 +1,8 @@
 # prodiapy
 This module makes generation of image by Prodia API easier
 
+[Full Documentation](https://prodiapy.readme.io/)
+
 ### Installation 
 ```
 pip install prodiapy==3.4
@@ -45,7 +47,6 @@ python tk_gui.py
 ![image](https://github.com/zenafey/prodiapy/assets/118455214/ff949765-307a-4460-87b9-c1a255f169c9)
 
 
-[Full Documentation](https://prodiapy.readme.io/)
 
 Feel free to join out [Discord server](https://discord.gg/PtdHCVysfj) and ask question!
 
