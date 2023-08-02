@@ -4,7 +4,8 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setup(name='prodiapy',
-version='3.4',
+version='3.5',
+url='https://github.com/zenafey/prodiapy',
 description='Prodia API Python Wrapper',
 long_description=long_description,
 long_description_content_type='text/markdown',

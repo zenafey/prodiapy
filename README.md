@@ -5,29 +5,30 @@ This module makes generation of image by Prodia API easier
 
 ### Installation 
 ```
-pip install prodiapy==3.4
+pip install prodiapy==3.5
 ```
 For using this script you need to get your Prodia api key, you can make it on https://app.prodia.com/api
 
 
 ### Example of txt2img usage
 ```python
-import prodia
+from prodia import Client, Model
 
 key = "your-prodia-key"
 
-client = prodia.Client(api_key=key)
+client = Client(api_key=key)
 
-image = client.txt2img(prompt="kittens on cloud", model="dreamlike-diffusion-2.0.safetensors [fdcf65e7]")
+image = client.txt2img(prompt="kittens on cloud", model="Realistic_Vision_V4.0.safetensors [29a7afaa]")
 print(image.url)
 ```
-`image` variable will be a class with attributes:
+`image` class attributes:
 
 - url - url of generated image
 - payload - used payload
 - response - retrieved response
 - seed() - function that return seed of generated image
 - pnginfo() - function that return a dict with pnginfo of image
+- load()/ aload() - function to get image as BytesIO and its async version
 
 
 
