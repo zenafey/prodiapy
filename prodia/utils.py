@@ -34,26 +34,6 @@ def is_empty_or_whitespace(s):
         return True
     return all(c.isspace() for c in s)
 
-
-
-def validate_sampler(sampler):
-    if sampler not in [v.value for v in Sampler]:
-        return True
-    else:
-        return False
-
-def validate_model(model):
-    if model not in [v.value[0] for v in Model]:
-        return True
-    else:
-        return False
-
-def validate_control(model):
-    if model not in [v.value[0] for v in Control]:
-        return True
-    else:
-        return False
-
 def error(msg):
     print(Fore.RED + f"ERROR: {msg}" + Fore.RESET)
 
@@ -63,12 +43,4 @@ def warn(msg):
 def failed(msg):
     print(Fore.RED + f"FAILED: {msg}" + Fore.RESET)
 
-
-def controlnet_models():
-    for model in Control:
-        print(f"{model.value[0]} - {model.value[1]} - {model.value[2]}")
-
-def samplers():
-    for sampler in Sampler:
-        print(f"{sampler.value}")
 
