@@ -21,6 +21,7 @@ client = Client(api_key=key)
 image = client.txt2img(prompt="kittens on cloud", model="Realistic_Vision_V4.0.safetensors [29a7afaa]")
 print(image.url)
 ```
+P.S. To see full list of available models: client.model_list()
 `image` class attributes:
 
 - url - url of generated image
