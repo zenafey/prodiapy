@@ -5,7 +5,7 @@ This module makes generation of image by Prodia API easier
 
 ### Installation 
 ```
-pip install prodiapy==3.5
+pip install -U prodiapy
 ```
 For using this script you need to get your Prodia api key, you can make it on https://app.prodia.com/api
 
@@ -14,11 +14,9 @@ For using this script you need to get your Prodia api key, you can make it on ht
 ```python
 from prodia import Client, Model
 
-key = "your-prodia-key"
+client = Client(api_key="YOUR PRODIA API KEY")
 
-client = Client(api_key=key)
-
-image = client.txt2img(prompt="kittens on cloud", model="Realistic_Vision_V4.0.safetensors [29a7afaa]")
+image = client.sd_generate(prompt="kittens on cloud", model="Realistic_Vision_V4.0.safetensors [29a7afaa]")
 print(image.url)
 ```
 P.S. To see full list of available models: client.model_list()
@@ -32,15 +30,8 @@ P.S. To see full list of available models: client.model_list()
 - load()/ aload() - function to get image as BytesIO and its async version
 
 
-
-# HuggingFace Demo
-
-https://huggingface.co/spaces/zenafey/prodia
-
-![image](https://github.com/zenafey/prodiapy/assets/118455214/4692d825-1d9f-4e4e-a041-40b0e31dc96e)
-
-
 # Prodia Desktop Studio
+!!WARNING!! Prodia Desktop Studio doesnt support prodiapy 3.6 yet, make sure you are using prodiapy 3.5
 ```
 git clone https://github.com/zenafey/prodiapy
 cd prodiapy
