@@ -1,11 +1,11 @@
-# prodiapy
+# prodiapy (DEPRECATED REPO)
 This module makes generation of image by Prodia API easier
 
-[Full Documentation](https://prodiapy.readme.io/)
+[Full Documentation](https://prodiapy.readme.io/) - DEPRECARED
 
 ### Installation 
 ```
-pip install -U prodiapy
+pip install prodiapy==3.6
 ```
 For using this script you need to get your Prodia api key, you can make it on https://app.prodia.com/api
 
