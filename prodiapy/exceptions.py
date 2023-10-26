@@ -9,3 +9,6 @@ class InvalidParameter(ProdiaException):
 
 class UnknownError(ProdiaException):
     """Exception raised by unknown Prodia errors"""
+
+class AuthorizationError(ProdiaException):
+    """Exception raised by authorization errors"""
