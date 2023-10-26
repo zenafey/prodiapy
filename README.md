@@ -24,15 +24,6 @@ result = pipe.wait_for(job)
 print(result['imageUrl'])
 ```
 
-# Prodia Desktop Studio
-!!WARNING!! Prodia Desktop Studio doesnt support prodiapy 3.6 yet, make sure you are using prodiapy 3.5
-```
-git clone https://github.com/zenafey/prodiapy
-cd prodiapy
-python tk_gui.py
-```
-![image](https://github.com/zenafey/prodiapy/assets/118455214/ff949765-307a-4460-87b9-c1a255f169c9)
-
 
 
 Feel free to join out [Discord server](https://discord.gg/PtdHCVysfj) and ask question!
