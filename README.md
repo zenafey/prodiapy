@@ -1,34 +1,28 @@
-# prodiapy (DEPRECATED REPO)
+# prodiapy 
 This module makes generation of image by Prodia API easier
 
-[Full Documentation](https://prodiapy.readme.io/) - DEPRECARED
+[Full Documentation](https://prodiapy.readme.io/) 
 
 ### Installation 
 ```
-pip install prodiapy==3.6
+pip install prodiapy -U
 ```
 For using this script you need to get your Prodia api key, you can make it on https://app.prodia.com/api
 
 
 ### Example of txt2img usage
 ```python
-from prodia import Client, Model
+from prodiapy import StableDiffusionXL
 
-client = Client(api_key="YOUR PRODIA API KEY")
+pipe = StableDiffusionXL(
+    api_key="YOUR_PRODIA_KEY"
+)
 
-image = client.sd_generate(prompt="kittens on cloud", model="Realistic_Vision_V4.0.safetensors [29a7afaa]")
-print(image.url)
+job = pipe.generate(prompt="cat")
+result = pipe.wait_for(job)
+
+print(result['imageUrl'])
 ```
-P.S. To see full list of available models: client.model_list()
-`image` class attributes:
-
-- url - url of generated image
-- payload - used payload
-- response - retrieved response
-- seed() - function that return seed of generated image
-- pnginfo() - function that return a dict with pnginfo of image
-- load()/ aload() - function to get image as BytesIO and its async version
-
 
 # Prodia Desktop Studio
 !!WARNING!! Prodia Desktop Studio doesnt support prodiapy 3.6 yet, make sure you are using prodiapy 3.5
