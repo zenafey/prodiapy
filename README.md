@@ -26,7 +26,7 @@ print(result['imageUrl'])
 
 
 
-Feel free to join out [Discord server](https://discord.gg/PtdHCVysfj) and ask question!
+Feel free to join out [Discord server](https://discord.gg/7NbzdD6qg8) and ask question!
 
 ![7eacddcb-3a45-4114-b731-3cd7af9522e1](https://user-images.githubusercontent.com/118455214/233359979-80274381-10dd-4ced-b7fa-d45437ef5bce.png)
 
