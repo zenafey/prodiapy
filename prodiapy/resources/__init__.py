@@ -1,4 +1,5 @@
+from .logger import logger
 from .stablediffusion import StableDiffusion, AsyncStableDiffusion
 from .stablediffusionxl import StableDiffusionXL, AsyncStableDiffusionXL
-from .upscale import Upscaler, AsyncUpscaler
-from .custom import Custom, AsyncCustom
+from .upscale import Upscale, AsyncUpscale
+from .general import General, AsyncGeneral

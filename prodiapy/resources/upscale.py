@@ -1,57 +1,56 @@
-from prodiapy.resources.engine import Engine
-from prodiapy.log_util import failed, success
-import time
-import asyncio
+from prodiapy.resources.engine import APIResource
+from typing import Union
+from prodiapy.resources.constants import *
+from prodiapy.resources.utils import form_body
 
 
-class Upscaler(Engine):
-    def __init__(self, api_key, base_url=None):
-        self.base = base_url or "https://api.prodia.com/v1"
-        self.api_key = api_key
+class Upscale(APIResource):
+    def __init__(self, client) -> None:
+        super().__init__(client)
 
-    def upscale(self, **params):
-        return super()._post(url=f"{self.base}/upscale", body=params, api_key=self.api_key)
+    def upscale(
+            self,
+            imageUrl: str | None = None,
+            imageData=None,
+            resize: Union[int, Literal[2, 4]] = 2,
+            dict_parameters: dict | None = None
+    ) -> dict:
+        body = form_body(
+                dict_parameters=dict_parameters,
+                imageUrl=imageUrl,
+                imageData=imageData,
+                resize=resize
+            )
+        print(body)
+        return self._post(
+            "/upscale",
+            body=form_body(
+                dict_parameters=dict_parameters,
+                imageUrl=imageUrl,
+                imageData=imageData,
+                resize=resize
+            )
+        )
 
-    def get_job(self, job_id):
-        return super()._get(url=f"{self.base}/job/{job_id}", api_key=self.api_key)
 
+class AsyncUpscale(APIResource):
+    def __init__(self, client) -> None:
+        super().__init__(client)
 
-    def wait_for(self, job):
-        job_result = job
+    async def upscale(
+            self,
+            imageUrl: str | None = None,
+            imageData=None,
+            resize: Union[int, Literal[2, 4], None] = None,
+            dict_parameters: dict | None = None
+    ) -> dict:
+        return await self._post(
+            "/upscale",
+            body=form_body(
+                dict_parameters=dict_parameters,
+                imageUrl=imageUrl,
+                imageData=imageData,
+                resize=resize
+            )
+        )
 
-        while job_result['status'] not in ['succeeded', 'failed']:
-            time.sleep(0.25)
-            job_result = self.get_job(job['job'])
-
-        if job_result['status'] == 'failed':
-            failed(f"Job {job_result['job']} failed")
-            raise Exception("Job failed")
-
-        success(f"Got result: {job_result}")
-        return job_result
-
-
-class AsyncUpscaler(Engine):
-    def __init__(self, api_key, base_url=None):
-        self.base = base_url or "https://api.prodia.com/v1"
-        self.api_key = api_key
-
-    async def upscale(self, **params):
-        return await super()._apost(url=f"{self.base}/upscale", body=params, api_key=self.api_key)
-
-    async def get_job(self, job_id):
-        return await super()._aget(url=f"{self.base}/job/{job_id}", api_key=self.api_key)
-
-    async def wait_for(self, job):
-        job_result = job
-
-        while job_result['status'] not in ['succeeded', 'failed']:
-            await asyncio.sleep(0.25)
-            job_result = await self.get_job(job['job'])
-
-        if job_result['status'] == 'failed':
-            failed(f"Job {job_result['job']} failed")
-            raise Exception("Job failed")
-
-        success(f"Got result: {job_result}")
-        return job_result
