@@ -6,7 +6,7 @@ authors = ["zenafey <zenafey@eugw.ru>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^3.8"
+python = "^3.11"
 requests = "^2.27.1"
 aiohttp = "^3.8.1"
 colorama = "^0.4.6"
