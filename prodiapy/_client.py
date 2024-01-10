@@ -44,6 +44,9 @@ class Prodia(SyncAPIClient):
 
         general = resources.General(self)
         upscale = resources.Upscale(self)
+        faceswap = resources.FaceSwap(self)
+
+        self.faceswap = faceswap.faceswap
         self.upscale = upscale.upscale
         self.create = general.create
         self.job = general.job
@@ -96,6 +99,9 @@ class AsyncProdia(AsyncAPIClient):
 
         general = resources.AsyncGeneral(self)
         upscale = resources.AsyncUpscale(self)
+        faceswap = resources.AsyncFaceSwap(self)
+
+        self.faceswap = faceswap.faceswap
         self.upscale = upscale.upscale
         self.create = general.create
         self.job = general.job

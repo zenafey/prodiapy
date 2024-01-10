@@ -55,6 +55,7 @@ sd_model_literal = Literal[
   "rundiffusionFX_v10.safetensors [cd4e694d]",
   "sdv1_4.ckpt [7460a6fa]",
   "v1-5-pruned-emaonly.safetensors [d7049739]",
+  "v1-5-inpainting.safetensors [21c7ab71]",
   "shoninsBeautiful_v10.safetensors [25d8c546]",
   "theallys-mix-ii-churned.safetensors [5d9225a4]",
   "timeless-1.0.ckpt [7c4971d4]",

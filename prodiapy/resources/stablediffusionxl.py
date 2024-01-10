@@ -140,6 +140,9 @@ class StableDiffusionXL(APIResource):
     def loras(self) -> list:
         return self._get("/sdxl/loras")
 
+    def embeddings(self) -> list:
+        return self._get("/sdxl/embeddings")
+
 
 class AsyncStableDiffusionXL(APIResource):
     def __init__(self, client) -> None:
@@ -276,4 +279,7 @@ class AsyncStableDiffusionXL(APIResource):
 
     async def loras(self) -> list:
         return await self._get("/sdxl/loras")
+
+    async def embeddings(self) -> list:
+        return await self._get("/sdxl/embeddings")
 

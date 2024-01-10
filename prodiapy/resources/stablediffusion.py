@@ -191,6 +191,9 @@ class StableDiffusion(APIResource):
     def loras(self) -> list:
         return self._get("/sd/loras")
 
+    def embeddings(self) -> list:
+        return self._get("/sd/embeddings")
+
 
 class AsyncStableDiffusion(APIResource):
     def __init__(self, client) -> None:
@@ -378,4 +381,7 @@ class AsyncStableDiffusion(APIResource):
 
     async def loras(self) -> list:
         return await self._get("/sd/loras")
+
+    async def embeddings(self) -> list:
+        return await self._get("/sd/embeddings")
 

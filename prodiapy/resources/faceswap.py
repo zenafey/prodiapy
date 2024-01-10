@@ -1,49 +1,43 @@
 from prodiapy.resources.engine import APIResource
-from typing import Union
-from prodiapy.resources.constants import *
 from prodiapy.resources.utils import form_body
 
 
-class Upscale(APIResource):
+class FaceSwap(APIResource):
     def __init__(self, client) -> None:
         super().__init__(client)
 
-    def upscale(
+    def faceswap(
             self,
-            imageUrl: str | None = None,
-            imageData=None,
-            resize: Union[int, Literal[2, 4]] = 2,
+            sourceUrl: str | None = None,
+            targetUrl: str | None = None,
             dict_parameters: dict | None = None
     ) -> dict:
         return self._post(
-            "/upscale",
+            "/faceswap",
             body=form_body(
                 dict_parameters=dict_parameters,
-                imageUrl=imageUrl,
-                imageData=imageData,
-                resize=resize
+                sourceUrl=sourceUrl,
+                targetUrl=targetUrl
             )
         )
 
 
-class AsyncUpscale(APIResource):
+class AsyncFaceSwap(APIResource):
     def __init__(self, client) -> None:
         super().__init__(client)
 
-    async def upscale(
+    async def faceswap(
             self,
-            imageUrl: str | None = None,
-            imageData=None,
-            resize: Union[int, Literal[2, 4], None] = None,
+            sourceUrl: str | None = None,
+            targetUrl: str | None = None,
             dict_parameters: dict | None = None
     ) -> dict:
         return await self._post(
             "/upscale",
             body=form_body(
                 dict_parameters=dict_parameters,
-                imageUrl=imageUrl,
-                imageData=imageData,
-                resize=resize
+                sourceUrl=sourceUrl,
+                targetUrl=targetUrl
             )
         )
 

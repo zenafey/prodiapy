@@ -1,5 +1,5 @@
 # Description
-prodiapy is an unofficial lightweight Python package for Prodia Stable Diffusion API
+prodiapy is an unofficial lightweight Python package for [Prodia Stable Diffusion API](https://docs.prodia.com/reference/getting-started)
 
 # Installation 
 ```commandline
