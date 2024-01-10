@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from prodiapy.resources.engine import APIResource
 from typing import Union
 from prodiapy.resources.constants import *

@@ -1,7 +1,6 @@
 import aiohttp
 import requests
-from prodiapy._exceptions import *
-from prodiapy.resources import logger
+from prodiapy.resources.utils import raise_exception
 
 
 class SyncAPIClient:
@@ -11,18 +10,9 @@ class SyncAPIClient:
 
     def _request(self, method, endpoint, body=None):
         r = requests.request(method, self.base_url+endpoint, json=body, headers=self.headers)
-        match r.status_code:
-            case 200:
-                return r.json()
-            case 401 | 402:
-                logger.error("Caught error(Unauthorized)")
-                raise AuthenticationError(f"Prodia API returned {r.status_code}. Details: {r.text}")
-            case 400:
-                logger.error("Caught error(Invalid Generation Parameters)")
-                raise InvalidParameterError(f"Prodia API returned {r.status_code}. Details: {r.text}")
-            case _:
-                logger.error("Unknown request error")
-                raise UnknownError(f"Prodia API returned {r.status_code}. Details: {r.text}")
+        raise_exception(r.status_code, r.text)
+
+        return r.json()
 
     def _post(self, endpoint, body):
         return self._request("post", endpoint, body)
@@ -50,18 +40,9 @@ class AsyncAPIClient:
     async def _request(self, method, endpoint, body=None):
         async with aiohttp.ClientSession() as s:
             async with s.request(method, self.base_url+endpoint, json=body, headers=self.headers) as r:
-                match r.status:
-                    case 200:
-                        return await r.json()
-                    case 401 | 402:
-                        logger.error("Caught error(Unauthorized)")
-                        raise AuthenticationError(f"Prodia API returned {r.status}. Details: {await r.text()}")
-                    case 400:
-                        logger.error("Caught error(Invalid Generation Parameters)")
-                        raise InvalidParameterError(f"Prodia API returned {r.status}. Details: {await r.text()}")
-                    case _:
-                        logger.error("Unknown request error")
-                        raise UnknownError(f"Prodia API returned {r.status}. Details: {await r.text()}")
+                raise_exception(r.status, await r.text())
+
+                return await r.json()
 
     async def _post(self, endpoint, body):
         return await self._request("post", endpoint, body)

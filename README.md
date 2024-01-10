@@ -3,7 +3,7 @@ prodiapy is an unofficial lightweight Python package for [Prodia Stable Diffusio
 
 # Installation 
 ```commandline
-pip install -U prodiapy
+pip install prodiapy==5.0a1
 ```
 
 # text2img example

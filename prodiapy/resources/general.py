@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from prodiapy.resources.engine import APIResource
 from prodiapy.resources.response import ProdiaResponse
 from prodiapy.resources.logger import logger

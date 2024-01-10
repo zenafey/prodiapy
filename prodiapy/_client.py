@@ -1,7 +1,8 @@
+from __future__ import annotations
+
 from prodiapy.resources.engine import SyncAPIClient, AsyncAPIClient
 from prodiapy import resources
 from prodiapy._exceptions import *
-from typing_extensions import override
 
 import os
 
@@ -27,7 +28,7 @@ class Prodia(SyncAPIClient):
         if api_key is None:
             raise AuthenticationError(
                 "The api_key client option must be set either by passing api_key to the client or by setting the \
-                PRODIA_API_KEY environment variable"
+PRODIA_API_KEY environment variable"
             )
         self.api_key = api_key
 
@@ -55,7 +56,6 @@ class Prodia(SyncAPIClient):
 
 
     @property
-    @override
     def auth_headers(self) -> dict[str, str]:
         api_key = self.api_key
         return {'X-Prodia-Key': api_key, 'Content-Type': 'application/json'}
@@ -82,7 +82,7 @@ class AsyncProdia(AsyncAPIClient):
         if api_key is None:
             raise AuthenticationError(
                 "The api_key client option must be set either by passing api_key to the client or by setting the \
-                PRODIA_API_KEY environment variable"
+PRODIA_API_KEY environment variable"
             )
         self.api_key = api_key
 
@@ -109,7 +109,6 @@ class AsyncProdia(AsyncAPIClient):
         self.wait = general.wait
 
     @property
-    @override
     def auth_headers(self) -> dict[str, str]:
         api_key = self.api_key
         return {'X-Prodia-Key': api_key, 'Content-Type': 'application/json'}

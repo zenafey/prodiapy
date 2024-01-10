@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from prodiapy.resources.engine import APIResource
 from prodiapy.resources.utils import form_body
 
