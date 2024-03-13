@@ -2,7 +2,7 @@
 
 class ProdiaResponse:
     """
-    Prodia API response(after waiting for result)
+    Prodia API result class
 
     Attributes:
         job_id: id of the job

@@ -4,7 +4,8 @@ __all__ = [
     "AuthenticationError",
     "InvalidParameterError",
     "UnknownError",
-    "FailedJobError"
+    "FailedJobError",
+    "exception_vocab"
 ]
 
 
@@ -26,3 +27,9 @@ class UnknownError(ProdiaError):
 
 class FailedJobError(ProdiaError):
     pass
+
+
+exception_vocab = {
+    401 | 401: AuthenticationError,
+    400: InvalidParameterError
+    }

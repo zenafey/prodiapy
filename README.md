@@ -1,9 +1,12 @@
 # Description
 prodiapy is an unofficial lightweight Python package for [Prodia Stable Diffusion API](https://docs.prodia.com/reference/getting-started)
 
+# Pre-requirements
+The minimal ver. of Python supported by this package is 3.8.10
+
 # Installation 
 ```commandline
-pip install -U prodiapy
+pip install prodiapy
 ```
 
 # text2img example

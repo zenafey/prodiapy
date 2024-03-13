@@ -1,11 +1,10 @@
-from . import _exceptions
-from . import resources
+from . import _exceptions, resources, aio
 from .resources.logger import logger
-from ._client import Prodia, AsyncProdia
+from ._client import Prodia
 
 __all__ = [
     "_exceptions",
     "resources",
     "Prodia",
-    "AsyncProdia"
+    "aio"
 ]

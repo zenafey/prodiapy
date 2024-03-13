@@ -1,167 +1,46 @@
+from __future__ import annotations
+
 from prodiapy.resources.engine import APIResource
-from typing import Union
-from prodiapy.resources.constants import *
+from typing import Union, Optional, Literal
+from prodiapy.resources.stablediffusiongeneral import StableDiffusionGeneral, AsyncStableDiffusionGeneral
+from prodiapy.resources.engine import SyncAPIClient, AsyncAPIClient
 from prodiapy.resources.utils import form_body
 
 
-class StableDiffusion(APIResource):
-    def __init__(self, client) -> None:
-        super().__init__(client)
-
-    def generate(
-            self,
-            model: Union[str, sd_model_literal, None] = None,
-            prompt: str | None = None,
-            negative_prompt: str | None = None,
-            style_preset: Union[str, style_preset_literal, None] = None,
-            steps: int | None = None,
-            cfg_scale: int | float | None = None,
-            seed: int | None = None,
-            upscale: bool | None = None,
-            sampler: Union[str, sd_sampler_literal, None] = None,
-            aspect_ratio: Union[str, Literal["square", "portrait", "landscape"], None] = None,
-            width: int | None = None,
-            height: int | None = None,
-            dict_parameters: dict | None = None
-    ) -> dict:
-        return self._post(
-            "/sd/generate",
-            body=form_body(
-                dict_parameters=dict_parameters,
-                model=model,
-                prompt=prompt,
-                negative_prompt=negative_prompt,
-                style_preset=style_preset,
-                steps=steps,
-                cfg_scale=cfg_scale,
-                seed=seed,
-                upscale=upscale,
-                sampler=sampler,
-                aspect_ratio=aspect_ratio,
-                width=width,
-                height=height
-            )
-        )
-
-    def transform(
-            self,
-            imageUrl: str | None = None,
-            imageData = None,
-            model: Union[str, sd_model_literal, None] = None,
-            prompt: str | None = None,
-            denoising_strength: float | None = None,
-            negative_prompt: str | None = None,
-            style_preset: Union[str, style_preset_literal, None] = None,
-            steps: int | None = None,
-            cfg_scale: int | float | None = None,
-            seed: int | None = None,
-            upscale: bool | None = None,
-            sampler: Union[str, sd_sampler_literal, None] = None,
-            width: int | None = None,
-            height: int | None = None,
-            dict_parameters: dict | None = None
-    ) -> dict:
-        return self._post(
-            "/sd/transform",
-            body=form_body(
-                dict_parameters=dict_parameters,
-                imageUrl=imageUrl,
-                imageData=imageData,
-                model=model,
-                prompt=prompt,
-                denoising_strength=denoising_strength,
-                negative_prompt=negative_prompt,
-                style_preset=style_preset,
-                steps=steps,
-                cfg_scale=cfg_scale,
-                seed=seed,
-                upscale=upscale,
-                sampler=sampler,
-                width=width,
-                height=height
-            )
-        )
-
-    def inpainting(
-            self,
-            imageUrl: str | None = None,
-            imageData = None,
-            maskUrl: str | None = None,
-            maskData=None,
-            model: Union[str, sd_model_literal, None] = None,
-            prompt: str | None = None,
-            denoising_strength: float | None = None,
-            negative_prompt: str | None = None,
-            style_preset: Union[str, style_preset_literal, None] = None,
-            steps: int | None = None,
-            cfg_scale: int | float | None = None,
-            seed: int | None = None,
-            upscale: bool | None = None,
-            mask_blur: int | None = None,
-            inpainting_fill: Union[int, Literal[0, 1, 2, 3], None] = None,
-            inpainting_mask_invert: Union[int, Literal[0, 1], None] = None,
-            inpainting_full_res: bool | None = None,
-            sampler: Union[str, sd_sampler_literal, None] = None,
-            width: int | None = None,
-            height: int | None = None,
-            dict_parameters: dict | None = None
-    ) -> dict:
-        return self._post(
-            "/sd/inpainting",
-            body=form_body(
-                dict_parameters=dict_parameters,
-                imageUrl=imageUrl,
-                imageData=imageData,
-                maskUrl=maskUrl,
-                maskData=maskData,
-                model=model,
-                prompt=prompt,
-                denoising_strength=denoising_strength,
-                negative_prompt=negative_prompt,
-                style_preset=style_preset,
-                steps=steps,
-                cfg_scale=cfg_scale,
-                seed=seed,
-                upscale=upscale,
-                mask_blur=mask_blur,
-                inpainting_fill=inpainting_fill,
-                inpainting_mask_invert=inpainting_mask_invert,
-                inpainting_full_res=inpainting_full_res,
-                sampler=sampler,
-                width=width,
-                height=height
-            )
-        )
+class StableDiffusion(StableDiffusionGeneral):
+    """class related to /sd endpoints, source: https://docs.prodia.com/reference/generate"""
+    def __init__(self, client: SyncAPIClient) -> None:
+        super().__init__(client, model_architecture="sd")
 
     def controlnet(
             self,
-            imageUrl: str | None = None,
-            imageData = None,
-            model: Union[str, sd_model_literal, None] = None,
-            controlnet_model: str | None = None,
-            controlnet_module: str | None = None,
-            controlnet_mode: Union[int, Literal[0, 1 , 2], None] = None,
-            threshold_a: int | None = None,
-            threshold_b: int | None = None,
-            resize_mode: Union[int, Literal[0, 1, 2], None] = None,
-            prompt: str | None = None,
-            negative_prompt: str | None = None,
-            style_preset: Union[str, style_preset_literal, None] = None,
-            steps: int | None = None,
-            cfg_scale: int | float | None = None,
-            seed: int | None = None,
-            upscale: bool | None = None,
-            sampler: Union[str, sd_sampler_literal, None] = None,
-            width: int | None = None,
-            height: int | None = None,
-            dict_parameters: dict | None = None
+            image_url: Optional[str] = None,
+            image_data: Optional[str] = None,
+            model: Optional[str] = None,
+            controlnet_model: Optional[str] = None,
+            controlnet_module: Optional[str] = None,
+            controlnet_mode: Optional[Union[int, Literal[0, 1, 2]]] = None,
+            threshold_a: Optional[int] = None,
+            threshold_b: Optional[int] = None,
+            resize_mode: Optional[Union[int, Literal[0, 1, 2]]] = None,
+            prompt: Optional[str] = None,
+            negative_prompt: Optional[str] = None,
+            style_preset: Optional[str] = None,
+            steps: Optional[int] = None,
+            cfg_scale: Optional[int | float] = None,
+            seed: Optional[int] = None,
+            sampler: Optional[str] = None,
+            width: Optional[int] = None,
+            height: Optional[int] = None,
+            dict_parameters: Optional[dict] = None,
+            **kwargs
     ) -> dict:
         return self._post(
-            "/sd/controlnet",
+            f"/sd/controlnet",
             body=form_body(
                 dict_parameters=dict_parameters,
-                imageUrl=imageUrl,
-                imageData=imageData,
+                imageUrl=image_url,
+                imageData=image_data,
                 model=model,
                 controlnet_model=controlnet_model,
                 controlnet_module=controlnet_module,
@@ -175,184 +54,48 @@ class StableDiffusion(APIResource):
                 steps=steps,
                 cfg_scale=cfg_scale,
                 seed=seed,
-                upscale=upscale,
                 sampler=sampler,
                 width=width,
-                height=height
+                height=height,
+                **kwargs
             )
         )
 
-    def models(self) -> list:
-        return self._get("/sd/models")
 
-    def samplers(self) -> list:
-        return self._get("/sd/samplers")
-
-    def loras(self) -> list:
-        return self._get("/sd/loras")
-
-    def embeddings(self) -> list:
-        return self._get("/sd/embeddings")
-
-
-class AsyncStableDiffusion(APIResource):
-    def __init__(self, client) -> None:
-        super().__init__(client)
-
-    async def generate(
-            self,
-            model: Union[str, sd_model_literal, None] = None,
-            prompt: str | None = None,
-            negative_prompt: str | None = None,
-            style_preset: Union[str, style_preset_literal, None] = None,
-            steps: int | None = None,
-            cfg_scale: int | float | None = None,
-            seed: int | None = None,
-            upscale: bool | None = None,
-            sampler: Union[str, sd_sampler_literal, None] = None,
-            aspect_ratio: Union[str, Literal["square", "portrait", "landscape"], None] = None,
-            width: int | None = None,
-            height: int | None = None,
-            dict_parameters: dict | None = None
-    ) -> dict:
-        return await self._post(
-            "/sd/generate",
-            body=form_body(
-                dict_parameters=dict_parameters,
-                model=model,
-                prompt=prompt,
-                negative_prompt=negative_prompt,
-                style_preset=style_preset,
-                steps=steps,
-                cfg_scale=cfg_scale,
-                seed=seed,
-                upscale=upscale,
-                sampler=sampler,
-                aspect_ratio=aspect_ratio,
-                width=width,
-                height=height
-            )
-        )
-
-    async def transform(
-            self,
-            imageUrl: str | None = None,
-            imageData=None,
-            model: Union[str, sd_model_literal, None] = None,
-            prompt: str | None = None,
-            denoising_strength: float | None = None,
-            negative_prompt: str | None = None,
-            style_preset: Union[str, style_preset_literal, None] = None,
-            steps: int | None = None,
-            cfg_scale: int | float | None = None,
-            seed: int | None = None,
-            upscale: bool | None = None,
-            sampler: Union[str, sd_sampler_literal, None] = None,
-            width: int | None = None,
-            height: int | None = None,
-            dict_parameters: dict | None = None
-    ) -> dict:
-        return await self._post(
-            "/sd/transform",
-            body=form_body(
-                dict_parameters=dict_parameters,
-                imageUrl=imageUrl,
-                imageData=imageData,
-                model=model,
-                prompt=prompt,
-                denoising_strength=denoising_strength,
-                negative_prompt=negative_prompt,
-                style_preset=style_preset,
-                steps=steps,
-                cfg_scale=cfg_scale,
-                seed=seed,
-                upscale=upscale,
-                sampler=sampler,
-                width=width,
-                height=height
-            )
-        )
-
-    async def inpainting(
-            self,
-            imageUrl: str | None = None,
-            imageData=None,
-            maskUrl: str | None = None,
-            maskData=None,
-            model: Union[str, sd_model_literal, None] = None,
-            prompt: str | None = None,
-            denoising_strength: float | None = None,
-            negative_prompt: str | None = None,
-            style_preset: Union[str, style_preset_literal, None] = None,
-            steps: int | None = None,
-            cfg_scale: int | float | None = None,
-            seed: int | None = None,
-            upscale: bool | None = None,
-            mask_blur: int | None = None,
-            inpainting_fill: Union[int, Literal[0, 1, 2, 3], None] = None,
-            inpainting_mask_invert: Union[int, Literal[0, 1], None] = None,
-            inpainting_full_res: bool | None = None,
-            sampler: Union[str, sd_sampler_literal, None] = None,
-            width: int | None = None,
-            height: int | None = None,
-            dict_parameters: dict | None = None
-    ) -> dict:
-        return await self._post(
-            "/sd/inpainting",
-            body=form_body(
-                dict_parameters=dict_parameters,
-                imageUrl=imageUrl,
-                imageData=imageData,
-                maskUrl=maskUrl,
-                maskData=maskData,
-                model=model,
-                prompt=prompt,
-                denoising_strength=denoising_strength,
-                negative_prompt=negative_prompt,
-                style_preset=style_preset,
-                steps=steps,
-                cfg_scale=cfg_scale,
-                seed=seed,
-                upscale=upscale,
-                mask_blur=mask_blur,
-                inpainting_fill=inpainting_fill,
-                inpainting_mask_invert=inpainting_mask_invert,
-                inpainting_full_res=inpainting_full_res,
-                sampler=sampler,
-                width=width,
-                height=height
-            )
-        )
+class AsyncStableDiffusion(AsyncStableDiffusionGeneral):
+    """class related to /sd endpoints, source: https://docs.prodia.com/reference/generate"""
+    def __init__(self, client: AsyncAPIClient) -> None:
+        super().__init__(client, model_architecture="sd")
 
     async def controlnet(
             self,
-            imageUrl: str | None = None,
-            imageData=None,
-            model: Union[str, sd_model_literal, None] = None,
-            controlnet_model: str | None = None,
-            controlnet_module: str | None = None,
-            controlnet_mode: Union[int, Literal[0, 1, 2], None] = None,
-            threshold_a: int | None = None,
-            threshold_b: int | None = None,
-            resize_mode: Union[int, Literal[0, 1, 2], None] = None,
-            prompt: str | None = None,
-            negative_prompt: str | None = None,
-            style_preset: Union[str, style_preset_literal, None] = None,
-            steps: int | None = None,
-            cfg_scale: int | float | None = None,
-            seed: int | None = None,
-            upscale: bool | None = None,
-            sampler: Union[str, sd_sampler_literal, None] = None,
-            width: int | None = None,
-            height: int | None = None,
-            dict_parameters: dict | None = None
+            image_url: Optional[str] = None,
+            image_data: Optional[str] = None,
+            model: Optional[str] = None,
+            controlnet_model: Optional[str] = None,
+            controlnet_module: Optional[str] = None,
+            controlnet_mode: Optional[Union[int, Literal[0, 1, 2]]] = None,
+            threshold_a: Optional[int] = None,
+            threshold_b: Optional[int] = None,
+            resize_mode: Optional[Union[int, Literal[0, 1, 2]]] = None,
+            prompt: Optional[str] = None,
+            negative_prompt: Optional[str] = None,
+            style_preset: Optional[str] = None,
+            steps: Optional[int] = None,
+            cfg_scale: Optional[int | float] = None,
+            seed: Optional[int] = None,
+            sampler: Optional[str] = None,
+            width: Optional[int] = None,
+            height: Optional[int] = None,
+            dict_parameters: Optional[dict] = None,
+            **kwargs
     ) -> dict:
         return await self._post(
-            "/sd/controlnet",
+            f"/sd/controlnet",
             body=form_body(
                 dict_parameters=dict_parameters,
-                imageUrl=imageUrl,
-                imageData=imageData,
+                imageUrl=image_url,
+                imageData=image_data,
                 model=model,
                 controlnet_model=controlnet_model,
                 controlnet_module=controlnet_module,
@@ -366,22 +109,10 @@ class AsyncStableDiffusion(APIResource):
                 steps=steps,
                 cfg_scale=cfg_scale,
                 seed=seed,
-                upscale=upscale,
                 sampler=sampler,
                 width=width,
-                height=height
+                height=height,
+                **kwargs
             )
         )
-
-    async def models(self) -> list:
-        return await self._get("/sd/models")
-
-    async def samplers(self) -> list:
-        return await self._get("/sd/samplers")
-
-    async def loras(self) -> list:
-        return await self._get("/sd/loras")
-
-    async def embeddings(self) -> list:
-        return await self._get("/sd/embeddings")
 

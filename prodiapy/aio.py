@@ -1,5 +1,5 @@
 
-from prodiapy.resources.engine import SyncAPIClient
+from prodiapy.resources.engine import AsyncAPIClient
 from prodiapy import resources
 from typing import Optional
 from prodiapy._exceptions import *
@@ -7,18 +7,18 @@ from prodiapy._exceptions import *
 import os
 
 
-class Prodia(SyncAPIClient):
+class Prodia(AsyncAPIClient):
     api_key: str
-    sd: resources.StableDiffusion
-    sdxl: resources.StableDiffusionXL
-    general: resources.General
+    sd: resources.AsyncStableDiffusion
+    sdxl: resources.AsyncStableDiffusionXL
+    general: resources.AsyncGeneral
 
     def __init__(
             self,
             api_key: Optional[str] = os.getenv("PRODIA_API_KEY"),
             base_url: str = os.getenv("PRODIA_API_BASE", "https://api.prodia.com/v1")
-    ):
-        """Construct a new prodia client instance.
+    ) -> None:
+        """Construct a new async prodia client instance.
 
             This automatically infers the following arguments from their corresponding environment variables if they are not provided:
             - `api_key` from `PRODIA_API_KEY`
@@ -35,10 +35,10 @@ PRODIA_API_KEY environment variable"
             headers=self.auth_headers
         )
 
-        self.sd = resources.StableDiffusion(self)
-        self.sdxl = resources.StableDiffusionXL(self)
+        self.sd = resources.AsyncStableDiffusion(self)
+        self.sdxl = resources.AsyncStableDiffusionXL(self)
 
-        general = resources.General(self)
+        general = resources.AsyncGeneral(self)
 
         self.faceswap = general.faceswap
         self.upscale = general.upscale
@@ -51,5 +51,3 @@ PRODIA_API_KEY environment variable"
     def auth_headers(self) -> dict:
         api_key = self.api_key
         return {'X-Prodia-Key': api_key, 'Content-Type': 'application/json'}
-
-
