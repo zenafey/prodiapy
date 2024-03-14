@@ -33,7 +33,7 @@ class AsyncAPIClient:
             async with s.request(method, self.base_url+endpoint, json=body, headers=self.headers) as r:
                 raise_exception(r.status, await r.text())
 
-                return await r.json()
+                return await r.json(content_type=None)
 
     async def post(self, endpoint, body): return await self._request("post", endpoint, body)
 
