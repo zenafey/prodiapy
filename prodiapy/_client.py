@@ -1,5 +1,6 @@
 
 from prodiapy.resources.engine import SyncAPIClient
+from prodiapy.resources import constants
 from prodiapy import resources
 from typing import Optional
 from prodiapy._exceptions import *
@@ -8,6 +9,7 @@ import os
 
 
 class Prodia(SyncAPIClient):
+    """Prodia Client"""
     api_key: str
     sd: resources.StableDiffusion
     sdxl: resources.StableDiffusionXL
@@ -24,10 +26,7 @@ class Prodia(SyncAPIClient):
             - `api_key` from `PRODIA_API_KEY`
         """
         if api_key is None:
-            raise AuthenticationError(
-                "The api_key client option must be set either by passing api_key to the client or by setting the \
-PRODIA_API_KEY environment variable"
-            )
+            raise AuthenticationError(constants.AUTHENTICATION_ERROR)
         self.api_key = api_key
 
         super().__init__(
@@ -44,7 +43,7 @@ PRODIA_API_KEY environment variable"
         self.upscale = general.upscale
         self.create = general.create
         self.job = general.job
-        self.constant = general.constants
+        self.constants = general.constants
         self.wait = general.wait
 
     @property
