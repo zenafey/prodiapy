@@ -39,6 +39,7 @@ class Prodia(SyncAPIClient):
 
         general = resources.General(self)
 
+        self.photomaker = general.photomaker
         self.faceswap = general.faceswap
         self.upscale = general.upscale
         self.create = general.create

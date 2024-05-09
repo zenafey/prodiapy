@@ -38,6 +38,7 @@ class Prodia(AsyncAPIClient):
 
         general = resources.AsyncGeneral(self)
 
+        self.photomaker = general.photomaker
         self.faceswap = general.faceswap
         self.upscale = general.upscale
         self.create = general.create

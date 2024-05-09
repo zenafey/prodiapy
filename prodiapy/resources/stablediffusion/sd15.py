@@ -1,8 +1,7 @@
 from __future__ import annotations
 
-from prodiapy.resources.engine import APIResource
 from typing import Union, Optional, Literal
-from prodiapy.resources.stablediffusiongeneral import StableDiffusionGeneral, AsyncStableDiffusionGeneral
+from prodiapy.resources.stablediffusion.template import StableDiffusionGeneral, AsyncStableDiffusionGeneral
 from prodiapy.resources.engine import SyncAPIClient, AsyncAPIClient
 from prodiapy.resources.utils import form_body
 

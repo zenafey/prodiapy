@@ -1,3 +1,4 @@
+
 import aiohttp
 import requests
 from typing import Literal, Optional, Union
@@ -46,7 +47,3 @@ class APIResource:
         self._client = client
         self._get = client.get
         self._post = client.post
-
-
-
-

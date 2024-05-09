@@ -1,5 +1,5 @@
 
-from prodiapy.resources.stablediffusiongeneral import StableDiffusionGeneral, AsyncStableDiffusionGeneral
+from prodiapy.resources.stablediffusion.template import StableDiffusionGeneral, AsyncStableDiffusionGeneral
 
 
 class StableDiffusionXL(StableDiffusionGeneral):

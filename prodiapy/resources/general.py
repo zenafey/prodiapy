@@ -4,6 +4,7 @@ from prodiapy.resources.engine import APIResource, SyncAPIClient, AsyncAPIClient
 from prodiapy.resources.facerestore import FaceRestore, AsyncFaceRestore
 from prodiapy.resources.faceswap import FaceSwap, AsyncFaceSwap
 from prodiapy.resources.upscale import Upscale, AsyncUpscale
+from prodiapy.resources.photomaker import PhotoMaker, AsyncPhotoMaker
 from prodiapy.resources.response import ProdiaResponse
 from prodiapy.resources.utils import form_body
 from prodiapy.resources import logger
@@ -21,6 +22,7 @@ class General(APIResource):
 
     def __init__(self, client: SyncAPIClient) -> None:
         super().__init__(client)
+        self.photomaker = PhotoMaker(client).photomaker
         self.facerestore = FaceRestore(client).facerestore
         self.faceswap = FaceSwap(client).faceswap
         self.upscale = Upscale(client).upscale
@@ -106,6 +108,7 @@ class AsyncGeneral(APIResource):
 
     def __init__(self, client: AsyncAPIClient) -> None:
         super().__init__(client)
+        self.photomaker = AsyncPhotoMaker(client).photomaker
         self.facerestore = AsyncFaceRestore(client).facerestore
         self.faceswap = AsyncFaceSwap(client).faceswap
         self.upscale = AsyncUpscale(client).upscale
