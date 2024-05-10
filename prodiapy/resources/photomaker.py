@@ -68,7 +68,7 @@ class AsyncPhotoMaker(APIResource):
             Python dictionary containing job id
         """
         return await self._post(
-            "/upscale",
+            "/photomaker",
             body=form_body(
                 dict_parameters=dict_parameters,
                 imageUrls=image_urls,
