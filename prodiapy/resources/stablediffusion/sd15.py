@@ -1,12 +1,12 @@
 from __future__ import annotations
 
 from typing import Union, Optional, Literal
-from prodiapy.resources.stablediffusion.template import StableDiffusionGeneral, AsyncStableDiffusionGeneral
+from prodiapy.resources.stablediffusion.template import StableDiffusionTemplate, AsyncStableDiffusionGeneral
 from prodiapy.resources.engine import SyncAPIClient, AsyncAPIClient
 from prodiapy.resources.utils import form_body
 
 
-class StableDiffusion(StableDiffusionGeneral):
+class StableDiffusion(StableDiffusionTemplate):
     """class related to /sd endpoints, source: https://docs.prodia.com/reference/generate"""
     def __init__(self, client: SyncAPIClient) -> None:
         super().__init__(client, model_architecture="sd")

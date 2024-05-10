@@ -5,7 +5,7 @@ from typing import Union, Optional, Literal
 from prodiapy.resources.utils import form_body
 
 
-class StableDiffusionGeneral(APIResource):
+class StableDiffusionTemplate(APIResource):
     def __init__(self, client, model_architecture="sd") -> None:
         super().__init__(client)
         self.model_architecture = model_architecture

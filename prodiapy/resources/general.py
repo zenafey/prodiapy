@@ -22,6 +22,7 @@ class General(APIResource):
 
     def __init__(self, client: SyncAPIClient) -> None:
         super().__init__(client)
+        
         self.photomaker = PhotoMaker(client).photomaker
         self.facerestore = FaceRestore(client).facerestore
         self.faceswap = FaceSwap(client).faceswap
@@ -108,6 +109,7 @@ class AsyncGeneral(APIResource):
 
     def __init__(self, client: AsyncAPIClient) -> None:
         super().__init__(client)
+
         self.photomaker = AsyncPhotoMaker(client).photomaker
         self.facerestore = AsyncFaceRestore(client).facerestore
         self.faceswap = AsyncFaceSwap(client).faceswap

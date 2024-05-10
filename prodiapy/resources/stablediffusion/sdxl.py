@@ -1,8 +1,8 @@
 
-from prodiapy.resources.stablediffusion.template import StableDiffusionGeneral, AsyncStableDiffusionGeneral
+from prodiapy.resources.stablediffusion.template import StableDiffusionTemplate, AsyncStableDiffusionGeneral
 
 
-class StableDiffusionXL(StableDiffusionGeneral):
+class StableDiffusionXL(StableDiffusionTemplate):
     """
     class related to /sdxl endpoints, source: https://docs.prodia.com/reference/sdxl-generate
     """
