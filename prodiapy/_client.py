@@ -3,7 +3,7 @@ from prodiapy.resources.engine import SyncAPIClient
 from prodiapy.resources import constants
 from prodiapy import resources
 from typing import Optional
-from prodiapy._exceptions import *
+from prodiapy.exceptions import *
 
 import os
 

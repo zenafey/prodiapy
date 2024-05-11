@@ -1,10 +1,10 @@
 
-from . import _exceptions, resources, aio
+from . import exceptions, resources, aio
 from .resources.logger import logger
 from ._client import Prodia
 
 __all__ = [
-    "_exceptions",
+    "exceptions",
     "resources",
     "Prodia",
     "aio"

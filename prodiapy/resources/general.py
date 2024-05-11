@@ -8,7 +8,7 @@ from prodiapy.resources.photomaker import PhotoMaker, AsyncPhotoMaker
 from prodiapy.resources.response import ProdiaResponse
 from prodiapy.resources.utils import form_body
 from prodiapy.resources import logger
-from prodiapy._exceptions import *
+from prodiapy.exceptions import *
 
 import time
 import asyncio

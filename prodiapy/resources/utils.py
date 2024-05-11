@@ -1,6 +1,6 @@
 
 from typing import Optional
-from prodiapy._exceptions import *
+from prodiapy.exceptions import *
 
 
 def form_body(dict_parameters: Optional[dict] = None, **kwargs) -> dict:

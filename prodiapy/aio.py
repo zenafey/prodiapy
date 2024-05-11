@@ -4,7 +4,7 @@ import os
 from prodiapy.resources.engine import AsyncAPIClient
 from prodiapy.resources import constants
 from prodiapy import resources
-from prodiapy._exceptions import AuthenticationError
+from prodiapy.exceptions import AuthenticationError
 
 
 class Prodia(AsyncAPIClient):
