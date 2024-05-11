@@ -1,4 +1,3 @@
-
 from prodiapy.resources.stablediffusion.template import StableDiffusionTemplate, AsyncStableDiffusionGeneral
 
 
